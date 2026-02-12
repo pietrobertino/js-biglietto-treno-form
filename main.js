@@ -1,18 +1,17 @@
-//Inserisco l'età del passeggero in una costante
-// const passenger_age = document.getElementById("passenger_age").value;
 
-// //Inseriesco i km da percorrere in una costante
-// const km = document.getElementById("ticket_km").value;
+//Registro il nodo dell'input dell'età e dell'input dei km in due costanti, 
+// ed una per il nodo del form e per il nome del passeggero
 
-//Chiedo all'utente la sua età
-const passenger_age  = Number(prompt("Digita la tua età"));
+const ageInputNode = document.getElementById("passenger_age");
+const kmInputNode = document.getElementById("ticket_km");
+const nameInputNode = document.getElementById("passenger_name");
+const formNode = document.querySelector("form");
 
-//Chiedo all'utente i kilometri che vuole percorrere
-const km = Number(prompt("Digita i km da percorrere"));
+//Registro i nodi necessari per l'output in delle costanti
+const nameOutputNode = document.querySelector(".name");
+const priceOutputNode = document.querySelector(".price");
 
-
-
-//definisco la funzione per calcolare il prezzo del biglietto
+//Definisco la funzione per calcolare il prezzo del biglietto
 function getTicketPrice(age,km) {
 
     const rate_per_km = 0.21;
@@ -30,4 +29,28 @@ function getTicketPrice(age,km) {
     return price.toFixed(2);
 }
 
-console.log(getTicketPrice(passenger_age,km));
+
+//aggiungo un event listener per quando viene sumbittato il form
+formNode.addEventListener("submit", function(event){
+    
+    //Blocco il refresh della pagina (default behaviour del submit)
+    event.preventDefault();
+
+
+    //assegno i valori inseriti dall'utente all'interno degli input a delle
+    //appropriate costanti
+    const passenger_age = ageInputNode.value;
+    const route_km = kmInputNode.value;
+    const full_name = nameInputNode.value;
+
+    //Calcolo il prezzo del biglietto richiamando la funzione definita in precedenza
+    //utilizzando le variabili appena create come argomenti e lo registro 
+    //in una costante
+    const price = getTicketPrice(passenger_age, route_km);
+
+    //Inserisco i valori del nome e del prezzo del biglietto all'interno dei
+    //rispettivi elementi HTML
+    nameOutputNode.innerHTML = full_name;
+    priceOutputNode.innerHTML = `&euro; ${price}`;
+    
+})

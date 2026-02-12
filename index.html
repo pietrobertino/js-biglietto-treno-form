@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Biglietto Treno Form</title>
     <script defer src="./main.js"></script>
 </head>
+
 <body>
 
-    <input type="text" id="name" placeholder="Write here your full name">
+    <form action="">
+        <label for="full_name">Nome completo:</label>
+        <input type="text" id="passenger_name">
 
-    <input type="number" id="passenger_age" placeholder="Write here your age">
+        <label for="passenger_age">Età:</label>
+        <input type="number" id="passenger_age">
 
-    <input type="number" id="ticket_km">
+        <label for="route_km">Km da percorrere:</label>
+        <input type="number" id="ticket_km">
 
-    <button>Invia</button>
-    
+        <button type="submit">Richiedi biglietto</button>
+    </form>
+
+    <div class="ticket_info">
+        <div class="name"></div>
+        <div class="price"></div>
+    </div>
+
 </body>
+
 </html>
